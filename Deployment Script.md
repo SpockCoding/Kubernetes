@@ -1,5 +1,4 @@
-########## K8S Cluster's Structure ###############
-
+### K8S Cluster's Structure
 
 |      Host       |      IP      |    Function   |    vCPU   |  Memory  |   Disk   |
 |-----------------|--------------|---------------|-----------|----------|----------|
@@ -8,27 +7,27 @@
 |      Node-1     | 192.168.1.50 |    Worker     |     2     |   4GB    |   20GB   |
 |      Node-2     | 192.168.1.60 |    Worker     |     2     |   4GB    |   20GB   |
 
-##################################################
 
-################### Monitoring ###################
 
-1 - Prometheus
-2 - Grafana
+### Monitoring 
 
-################## Data Store ####################
+* [Prometheus](https://prometheus.io) 
+* [Grafana](https://grafana.com)
 
-1 - LongHorn
+### Data Store 
 
-############### Cluster Managing #################
+* [LongHorn](https://longhorn.io)
 
-1 - Rancher
+### Cluster Managing
 
-################# Load Balancer ##################
+* [Rancher](https://www.rancher.com)
 
-1 - MetalLB
+### Load Balancer 
 
-################ Application Manager #############
+* [MetalLB](https://metallb.universe.tf)
 
-1 - Helm
+### Application Manager
 
-to be continued
+* [Helm](https://helm.sh)
+
+###### to be continued
