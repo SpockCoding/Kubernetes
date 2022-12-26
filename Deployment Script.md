@@ -30,4 +30,5 @@
 
 * [Helm](https://helm.sh)
 
-###### to be continued
+*“Eis que estou convosco todos os dias, até o fim dos tempos.” (Mt 28,20)
+*"I am with you alway, even unto the end of the world. Amen." (Mt28,20)
