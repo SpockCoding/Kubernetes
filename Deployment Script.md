@@ -32,7 +32,10 @@
 
 ### CI/ CD
 
-* GitHub Actions, GitLab CI, CircleCI
+* [GitHub Actions](https://github.com/features/actions), [GitLab CI](https://docs.gitlab.com/ee/ci/), [CircleCI](https://circleci.com)
+
+### IaC
+* Terraform
 
 *“Eis que estou convosco todos os dias, até o fim dos tempos.” (Mt 28,20)*
 
