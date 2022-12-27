@@ -2,18 +2,19 @@
 
 #### Strong Skills
 
-[] Redes, Linux, Windows 
-Segurança - intermediário
-Programação em Java (formação durante a faculdade em 2011) - tenho facilidade em codar
-Docker, Kubernetes - Fiz alguns cursos, uma das coisas que mais gostei de estudar em 2022.
-Python - Fiz um curso pequeno, básico do básico, achei muito interessante. 
-Github, Gitlab - Cursos em andamento.
-Cloud, AWS - Fiz um curso completo em 2021, achei legal. 
-Cloud, Azure - Fiz 1 aulão com a MS, bem introdutório.
+- [x] Redes, Linux, Windows, Segurança, Docker, Kubernetes
 
-O que está me faltando muito:
+#### Medium Skills
 
-CI/CD - Não sei nada
-Pipeline- Tbm não sei. 
-Dentre muitas e muitas outras coisas. 
+- [ ] Programação em Java - Curso em andamento, mas programei bastante na faculdade.
+- [ ] Programação em Python - Já programei em python mas preciso aprender muito. 
+- [X] Cloud, AWS.
+ 
+#### Minors Skills
+- [ ] Github, Gitlab - Cursos em andamento.
+- [ ] Cloud, Azure - Fiz 1 aulão com a MS, bem introdutório.
+- [ ] CI/CD - CircleCI,  GitLabCI, Github Actions. - Cursos em andamento.
+
+
+
 
