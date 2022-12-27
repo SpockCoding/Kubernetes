@@ -14,6 +14,8 @@
 - [ ] Github, Gitlab - Cursos em andamento.
 - [ ] Cloud, Azure - Fiz 1 aulão com a MS, bem introdutório.
 - [ ] CI/CD - CircleCI,  GitLabCI, Github Actions. - Cursos em andamento.
+- [ ] Terraform
+- [ ] Ansible
 
 
 
