@@ -2,7 +2,7 @@
 
 #### Strong Skills
 
-[ ] Redes, Linux, Windows 
+[] Redes, Linux, Windows 
 Segurança - intermediário
 Programação em Java (formação durante a faculdade em 2011) - tenho facilidade em codar
 Docker, Kubernetes - Fiz alguns cursos, uma das coisas que mais gostei de estudar em 2022.
