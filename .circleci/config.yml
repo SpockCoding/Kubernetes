@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
           name: "Olá People"
-          command: "echo abc "$(curl -s -I www.google.com)"
+          command: "echo "curl -s -I www.google.com""
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
