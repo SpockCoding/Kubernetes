@@ -11,6 +11,7 @@
 - [X] Cloud, AWS.
  
 #### Minors Skills
+
 - [ ] Github, Gitlab - Cursos em andamento.
 - [ ] Cloud, Azure - Fiz 1 aulão com a MS, bem introdutório.
 - [ ] CI/CD - CircleCI,  GitLabCI, Github Actions, ArgoCD. - Cursos em andamento.
