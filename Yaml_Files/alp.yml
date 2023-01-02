@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: alp
+  name: alp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: alp
+    spec:
+      containers:
+      - image: alpine
+        name: alpine
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "500m"
+          requests:
+            memory: 256Mi
+            cpu: "256m"
+
+        ports:
+        - containerPort: 22
+          protocol: TCP
+status: {}

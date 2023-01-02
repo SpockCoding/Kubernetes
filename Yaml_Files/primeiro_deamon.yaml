@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: meu-deamon
+  namespace: default
+  labels:
+    k8s-app: nginx
+spec:
+  selector:
+    matchLabels:
+      name: meu-deamon1
+  template:
+    metadata:
+      labels:
+        name: meu-deamon1
+    spec:
+      containers:
+      - name: meu-deamon1
+        image: nginx
+        ports:
+        - containerPort: 8080
+  updateStrategy:
+    type: RollingUpdate

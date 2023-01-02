@@ -1,0 +1,6 @@
+instance_type: t2.medium
+security_group: giropopsKubernetes
+image: ami-0d2505740b82f7948
+keypair: chave
+region: us-east-1
+count: 3

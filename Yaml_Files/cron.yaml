@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: girolixo
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: girolixo
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Bemvindo ao mundo ;sleep 30
+          restartPolicy: OnFailure
