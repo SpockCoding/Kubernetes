@@ -1,14 +1,17 @@
 ### K8S Cluster's Structure
 
-|      Host       |      IP      |    Function   |    vCPU   |  Memory  |   Disk   |
+
+|    Hostname     |      IP      |    Function   |    vCPU   |  Memory  |   Disk   |
 |-----------------|--------------|---------------|-----------|----------|----------|
-| Controlplane-1  | 192.168.1.30 | Control Plane |     2     |   4GB    |   20GB   |
-| Controlplane-2  | 192.168.1.40 | Control Plane |     2     |   4GB    |   20GB   |
-| Controlplane-3  | 192.168.1.50 | Control Plane |     2     |   4GB    |   20GB   |
-|      Node-1     | 192.168.1.60 |    Worker     |     2     |   4GB    |   20GB   |
-|      Node-2     | 192.168.1.70 |    Worker     |     2     |   4GB    |   20GB   |
+| ControlPlane-1  | 192.168.1.30 | Control Plane |     2     |   4GB    |   20GB   |
+| ControlPlane-2  | 192.168.1.40 | Control Plane |     2     |   4GB    |   20GB   |
+| ControlPlane-3  | 192.168.1.50 | Control Plane |     2     |   4GB    |   20GB   |
+|     Worker-1    | 192.168.1.60 |    Worker     |     2     |   4GB    |   20GB   |
+|     Worker-2    | 192.168.1.70 |    Worker     |     2     |   4GB    |   20GB   |
 
+### Domain
 
+*  Domain Name: Enterprise.local
 
 ### Monitoring 
 
