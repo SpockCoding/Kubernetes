@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: pod-web
+  name: pod-web
+  namespace: catota
+  resourceVersion: "389434"
+  uid: c3397aaa-0b62-4a9d-8c0d-c48841675c71
+spec:
+  containers:
+  - image: nginx
+    name: container-web
+  restartPolicy: Always
+  tolerations:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/control-plane
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: ""

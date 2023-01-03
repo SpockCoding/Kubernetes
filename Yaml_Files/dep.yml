@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: amor
+  name: amor
+  namespace: default
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: amor
+  template:
+    metadata:
+      labels:
+        app: amor
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx
+        ports:
+        - containerPort: 8888
+          protocol: TCP
+        resources: {}
+      restartPolicy: Always
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: teste
+  name: teste
+  namespace: default
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.108.198.14
+  clusterIPs:
+  - 10.108.198.14
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31605
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: amor
+  sessionAffinity: None
+  type: LoadBalancer
+
