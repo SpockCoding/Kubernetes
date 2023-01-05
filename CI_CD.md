@@ -122,3 +122,12 @@ eeed9f7c3966: Layer already exists
 ### Para gerar o par de chaves pode-se usar no windows o [puttygen](https://putty.org), ao final da chave gerada o argumento iniciado por rsa-key-* deve ser alterado para o username do linux (no caso do Bastion Host). É o mesmo existente no campo "Key comment"
 
 ![image](https://user-images.githubusercontent.com/97816800/210683796-d30cc415-5baa-4f97-9589-3d8d59157e32.png)
+
+### Ao se configurar no dockerfile para que o job tenha acesso ao Bastion Host, é necessário fornecer permissão para o aquivo Key.pem.
+
+![image](https://user-images.githubusercontent.com/97816800/210686169-3b3576f6-206c-46b7-a48f-9c7e82486023.png)
+
+```
+chmod 400 $SSH_KEY (onde esse último é a variável do GitLab que você configurou com a Key)
+```
+
