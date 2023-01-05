@@ -118,3 +118,7 @@ eeed9f7c3966: Layer already exists
 51c3cc38e25d: Pushed
 1.0: digest: sha256:1fc6065769b596d87d8ec170f64f2cfcdb236e4ed200fae2a395a22739d7c760 size: 1573
 ```
+
+### Para gerar o par de chaves pode-se usar no windows o [puttygen](https://putty.org), ao final da chave gerada o argumento iniciado por rsa-key-* deve ser alterado para o username do linux (no caso do Bastion Host). É o mesmo existente no campo "Key comment"
+
+![image](https://user-images.githubusercontent.com/97816800/210683796-d30cc415-5baa-4f97-9589-3d8d59157e32.png)
