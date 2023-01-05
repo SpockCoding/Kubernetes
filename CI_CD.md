@@ -1,0 +1,40 @@
+O exemplo de código do .gitlab-ci.yaml a seguir é um passo da pipeline no git que faz um push de sua aplicação no dockerhub empacotando tudo, assim, é possível no kubernetes, docker swarn, docker, fazer um pull dessa imagem de sua aplicação.
+Toda ver que houver um commit no repositório o Git irá executar essa pipeline fazendo esse push dessa aplicação docker.
+### .gitlab-ci.yml 
+
+stages:
+  - build
+
+build_images:
+  stage: build
+  image: docker:20.10.16
+
+  services:
+    - docker:20.10.16-dind
+  
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  
+  before_script:
+    - docker login -u  $REGISTRY_USER -p $REGISTRY_PASS
+
+  script:
+    - docker build -t spockiscoding/jarjarbinx:1.0 app/.
+    - docker push spockiscoding/jarjarbinx:1.0
+### dockerfile 
+
+FROM httpd:latest
+
+WORKDIR /usr/local/apache2/htdocs/
+
+COPY index.html /usr/local/apache2/htdocs/
+
+EXPOSE 80
+### Configuração da Pipeline no Gitlab
+
+![image](https://user-images.githubusercontent.com/97816800/210677199-ea1ce211-69c3-4be8-a2b1-09b01e67b47a.png)
+
+### No DockerHub o resultado do job da pipeline
+
+![image](https://user-images.githubusercontent.com/97816800/210677310-d7edf94b-9a1f-4fc6-8591-999c75b6feaf.png)
+
