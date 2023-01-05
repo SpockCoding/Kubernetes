@@ -131,3 +131,8 @@ eeed9f7c3966: Layer already exists
 chmod 400 $SSH_KEY (onde esse último é a variável do GitLab que você configurou com a Key)
 ```
 
+* Para que o ssh não faça perguntas o parâmetro -o StrictHostKeyChecking=no precisa ser incluído junto do comando ssh.
+
+![image](https://user-images.githubusercontent.com/97816800/210686694-618cf004-58c6-4bd8-a0a7-a44828261cf5.png)
+
+
