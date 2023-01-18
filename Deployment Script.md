@@ -3,7 +3,6 @@
 
 |    Hostname     |      IP      |    Function   |    vCPU   |  Memory  |   Disk   |
 |-----------------|--------------|---------------|-----------|----------|----------|
-|      Haproxy    | 192.168.1.20 |    HAproxy    |     2     |   4GB    |   20GB   |
 | ControlPlane-1  | 192.168.1.30 | Control Plane |     2     |   4GB    |   20GB   |
 | ControlPlane-2  | 192.168.1.40 | Control Plane |     2     |   4GB    |   20GB   |
 | ControlPlane-3  | 192.168.1.50 | Control Plane |     2     |   4GB    |   20GB   |
