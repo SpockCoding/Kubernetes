@@ -10,6 +10,9 @@
 |     Worker-1    | 192.168.1.60 |    Worker     |     2     |   4GB    |   20GB   |
 |     Worker-2    | 192.168.1.70 |    Worker     |     2     |   4GB    |   20GB   |
 
+![image](https://user-images.githubusercontent.com/97816800/213289081-d0272eaa-1ff2-4936-a7e3-cdcf67526c80.png)
+
+
 ### Domain
 
 *  Domain Name: Enterprise.local
