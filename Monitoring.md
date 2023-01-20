@@ -52,6 +52,43 @@ sudo chmod 777 /mnt/nfs/promdata
 ```bash=
 exportfs -rva
 ```
+* nos nós workers, instale o nfs common
+
+```bash=
+suto apt install -y nfs-common
+```
+
+* crie o diretório para o ponto de montagem
+
+```bash=
+mkdir -p /opt/nfs/promdata
+```
+
+* crie o ponto de montagem
+
+```bash=
+mount -t nfs 192.168.1.30:/opt/nfs/promdata /opt/nfs/promdata/
+```
+
+* faça o teste e veja se o server NFS está aceitando as conexões
+
+```bash=
+showmount -e 192.168.1.30
+```
+
+![image](https://user-images.githubusercontent.com/97816800/213593962-8950527a-e279-467b-aece-407b41a3e568.png)
+
+* adionamos o ponto de montagem no /etc/fstab
+
+![image](https://user-images.githubusercontent.com/97816800/213594166-463f5fa9-f403-4edd-8bea-bdc0f6a8707c.png)
+
+* teste o ponto de montagem nos nós workers
+
+```bash=
+mount | grep nfs
+``
+
+![image](https://user-images.githubusercontent.com/97816800/213594450-b8396a2d-af3e-466a-bf3c-645d3680aed5.png)
 
 * crie um arquivo  pv-pvc.yaml (vim pv-pvc.yml)
 
