@@ -28,6 +28,7 @@ suto apt install -y nfs-common
 
 ```bash=
 sudo mkdir -p /mnt/nfs/promdata
+
 ```
 
 * mude o dono do diretório, no caso, para nenhum
@@ -40,6 +41,7 @@ sudo chown nobody:nogroup /mnt/nfs/promdata
 ```bash=
 sudo chmod 777 /mnt/nfs/promdata
 ```
+
 * altere o arquivo /etc/exports
 
 ```bash=
