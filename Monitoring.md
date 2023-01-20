@@ -50,7 +50,7 @@ sudo chmod 777 /mnt/nfs/promdata
 * aplique
 
 ```bash=
-exportfs -ra
+exportfs -rva
 ```
 
 * crie um arquivo  pv-pvc.yaml (vim pv-pvc.yml)
