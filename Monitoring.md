@@ -21,6 +21,7 @@ metadata:
 
 ```bash=
 sudo apt install nfs-kernel-server
+suto apt install -y nfs-common
 ``
 
 * crie o diretório que será usado no Prometheus
@@ -39,6 +40,17 @@ sudo chown nobody:nogroup /mnt/nfs/promdata
 ```bash=
 sudo chmod 777 /mnt/nfs/promdata
 ```
+* altere o arquivo /etc/exports
+
+```bash=
+/mnt/nfs/promdata *(rw,sync,no_root_squash,subtree_check)
+```
+* aplique
+
+```bash=
+exportfs -ra
+```
+
 * crie um arquivo  pv-pvc.yaml (vim pv-pvc.yml)
 
 ```bash=
