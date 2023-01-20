@@ -152,8 +152,192 @@ subjects:
 ```bash=
 kubectl apply -f cluster-role-binding.yaml
 ``
+![image](https://user-images.githubusercontent.com/97816800/213589957-8c1c1e90-b760-4d7e-9f25-11f78bfb28c8.png)
 
-![image](https://user-images.githubusercontent.com/97816800/213589924-850e35f4-aabd-4115-af56-5f445aab2c73.png)
+* crie um config map (vim configmap.yml)
+
+```bash=
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval:     15s
+      evaluation_interval: 15s
+    alerting:
+      alertmanagers:
+      - static_configs:
+        - targets:
+    rule_files:
+      # - "example-file.yml"
+    scrape_configs:
+      - job_name: 'prometheus'
+        static_configs:
+        - targets: ['localhost:9090']
+    scrape_configs:
+      - job_name: 'kubelet'
+        kubernetes_sd_configs:
+        - role: node
+        scheme: https
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          insecure_skip_verify: true  # Required with Minikube.
+      - job_name: 'cadvisor'
+        kubernetes_sd_configs:
+        - role: node
+        scheme: https
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          insecure_skip_verify: true  # Required with Minikube.
+        metrics_path: /metrics/cadvisor
+      - job_name: 'k8apiserver'
+        kubernetes_sd_configs:
+        - role: endpoints
+        scheme: https
+        tls_config:
+          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          insecure_skip_verify: true  # Required if using Minikube.
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        relabel_configs:
+      - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+          action: keep
+          regex: default;kubernetes;https
+      - job_name: 'k8services'
+        kubernetes_sd_configs:
+        - role: endpoints
+        relabel_configs:
+        - source_labels:
+            - __meta_kubernetes_namespace
+            - __meta_kubernetes_service_name
+          action: drop
+          regex: default;kubernetes
+        - source_labels:
+            - __meta_kubernetes_namespace
+          regex: default
+          action: keep
+        - source_labels: [__meta_kubernetes_service_name]
+          target_label: job
+         - job_name: 'k8pods'
+        kubernetes_sd_configs:
+        - role: pod
+        relabel_configs:
+        - source_labels: [__meta_kubernetes_pod_container_port_name]
+          regex: metrics
+          action: keep
+        - source_labels: [__meta_kubernetes_pod_container_name]
+          target_label: job
+ ```
+ 
+ * aplique
+
+```bash=
+kubectl apply -f configmap.yaml
+```
+
+![image](https://user-images.githubusercontent.com/97816800/213590127-094643bf-7071-4cf6-a858-431f178d2fc9.png)
+
+* crie um deploymento pro prometheus (vim deployment.yml)
+
+```bash=
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: monitoring
+  labels:
+    app: prometheus
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+    spec:
+      containers:
+      - name: prometheus
+        image: prom/prometheus
+        args:
+          - '--storage.tsdb.retention=6h'
+          - '--storage.tsdb.path=/prometheus'
+          - '--config.file=/etc/prometheus/prometheus.yml'
+        ports:
+        - name: web
+          containerPort: 9090
+        volumeMounts:
+        - name: prometheus-config-volume
+          mountPath: /etc/prometheus
+        - name: prometheus-storage-volume
+          mountPath: /prometheus
+      restartPolicy: Always
+      volumes:
+      - name: prometheus-config-volume
+        configMap:
+            defaultMode: 420
+            name: prometheus-config
+      - name: prometheus-storage-volume
+        persistentVolumeClaim:
+            claimName: pvc-nfs-data
+  ```
+  
+  * aplique
+
+```bash=
+kubectl apply -f deployment.yaml
+```
+
+![image](https://user-images.githubusercontent.com/97816800/213590311-d0ae54a0-e1c2-46cc-a03c-8d28e4da6fff.png)
+
+* crie um serviço que irá expor o prometheus (vim service.yml)
+
+```bash=
+apiVersion: v1
+kind: Service
+metadata:
+    name: prometheus-service
+    namespace: monitoring
+    annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port:   '9090'
+spec:
+    selector:
+        app: prometheus
+    type: NodePort
+    ports:
+    - port: 8080
+      targetPort: 9090
+      nodePort: 30909
+```
+
+* aplique
+
+```bash=
+kubectl apply -f service.yaml
+```
+
+![image](https://user-images.githubusercontent.com/97816800/213590429-53504e98-a81b-4ed8-83bd-fbef82e6f0b2.png)
+
+
+* verifique tudo o que fizemos
+
+```bash=
+kubectl get all -n monitoring
+```
+
+
 
 
 
