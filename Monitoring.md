@@ -5,6 +5,7 @@
 ```bash=
 kubectl create namespace monitoring
 ```
+
 ![image](https://user-images.githubusercontent.com/97816800/213588584-fc9ff7d7-e6fe-4503-84e8-d90a680452a3.png)
 
 * se quiser criar via artefato 
@@ -15,6 +16,7 @@ kind: Namespace
 metadata:
   name: monitoring
   ``
+  
 * criar o persistent volume
 
 * instalar primeiro o NFS
