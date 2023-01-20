@@ -26,9 +26,9 @@ suto apt install -y nfs-common
 
 * crie o diretório que será usado no Prometheus
 
+
 ```bash=
 sudo mkdir -p /mnt/nfs/promdata
-
 ```
 
 * mude o dono do diretório, no caso, para nenhum
