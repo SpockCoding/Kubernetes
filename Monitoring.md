@@ -83,7 +83,7 @@ kubectl apply -f pv-pvc.yaml
 ```
 ![image](https://user-images.githubusercontent.com/97816800/213589289-d6b091f2-47bd-4193-941e-cb58565226e4.png)
 
-* cri um cluster role (vim cluster-role.yml)
+* crie um cluster role (vim cluster-role.yml)
 
 ```bash=
 apiVersion: rbac.authorization.k8s.io/v1
@@ -109,6 +109,72 @@ rules:
 ```bash=
 kubectl apply -f cluster-role.yaml
 ```
+
+![image](https://user-images.githubusercontent.com/97816800/213589581-3c701850-a206-4e8a-a46c-ec48ac2b9007.png)
+
+* crie uma service account (vim service-account.yml)
+
+```bash=
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+  namespace: monitoring
+```
+
+* aplique
+
+```bash=
+kubectl apply -f service-account.yaml
+```
+
+![image](https://user-images.githubusercontent.com/97816800/213589774-860382ce-322c-469c-a6ea-d9822d8e6b2d.png)
+
+* crie um cluster role binding (vim cluster-role-binding.yml)
+
+```bash=
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects:
+- kind: ServiceAccount
+  name: prometheus
+  namespace: monitoring
+```
+
+* aplique
+
+```bash=
+kubectl apply -f cluster-role-binding.yaml
+``
+
+![image](https://user-images.githubusercontent.com/97816800/213589924-850e35f4-aabd-4115-af56-5f445aab2c73.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
