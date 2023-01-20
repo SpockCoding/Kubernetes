@@ -337,7 +337,7 @@ kubectl apply -f service.yaml
 kubectl get all -n monitoring
 ```
 
-
+![image](https://user-images.githubusercontent.com/97816800/213590616-d243dca5-bda6-4283-a528-61e4c056f943.png)
 
 
 
