@@ -1,4 +1,4 @@
-## Tutorial sem muito atraso, Kubernetes no Centos 7, com a aplicação para fins didáticos. 
+## Tutorial sem muita enrolação, Kubernetes no Centos 7, com a aplicação para fins didáticos. 
 
 ### Será um Cluster com 1 Master e 2 Workers
 
