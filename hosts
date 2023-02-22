@@ -1,6 +1,0 @@
-192.168.1.20   HaProxy.enterprise.local 		    HaProxy
-192.168.1.30   ControlPlane-1.enterprise.local 		ControlPlane-1
-192.168.1.40   ControlPlane-2.enterprise.local 		ControlPlane-2
-192.168.1.50   ControlPlane-3.enterprise.local 		ControlPlane-3
-192.168.1.60   Worker-1.enterprise.local 			Worker-1
-192.168.1.70   Worker-2.enterprise.local 			Worker-2
