@@ -23,7 +23,7 @@ cat <<EOF>> /etc/hosts
 EOF
 ``` 
 
-### Disabilite O SELinux e Ajuste as regras de Firewall e Update Iptables
+### Desabilite O SELinux e Ajuste as regras de Firewall e faça um Update no Iptables
 
 ```bash=
 setenforce 0
@@ -49,7 +49,7 @@ EOF
 sysctl --system
 ```
 
-### Disabilite a memória Swap
+### Desabilite a memória Swap
 
 ```bash=
 sudo sed -i '/swap/d' /etc/fstab
@@ -85,13 +85,13 @@ gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cl
 EOF
 ```
 
-### Agora vamos pra vera, Docker, Containerd, Kubernetes
+### Agora vamos na vera, Docker, Containerd, Kubernetes
 
 ```bash=
 sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 ```
 
-* Esta parte é essencial pq se não comentar esta linha irá dar um erro dizendo que o container runtime is not working
+* Esta parte é essencial pq se não comentar esta linha irá dar um erro dizendo "container runtime is not working"
 
 ```bash=
 vim /etc/containerd/config.toml
@@ -119,11 +119,11 @@ sudo systemctl start kubelet
 sudo kubeadm init --control-plane-endpoint="192.168.1.30:6443" --pod-network-cidr="10.244.0.0/16"
 ```
 
-* Tudo estando cert irá aparecer conforma abaixo e as partes grifadas serão utilizadas posteriormente. Então copie e guarde.
+* Tudo estando certo irá aparecer conforme abaixo e as partes grifadas serão utilizadas posteriormente. Então copie e guarde.
 
 ![image](https://user-images.githubusercontent.com/97816800/220653405-9ab67f27-5a74-4a01-9f35-fc5f94103378.png)
 
-### Preparação do Kubernetes para receber o node, ajustes de config do HOME das configurações e a instalação do CNI (Container Network Interface)
+### Preparação do Kubernetes para receber o node, ajustes de config. do HOME das configurações e a instalação do CNI (Container Network Interface) Weave
 
 ```bash
   mkdir -p $HOME/.kube
@@ -137,17 +137,11 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
 
 ### Adicionar os nós Workers ao Cluster
 
-* A chave que copiamos para adicionar Worker Nodes ao cluster iremos utilizar agora. 
+* O token que copiamos para adicionar os Workers Nodes ao cluster iremos utilizar agora. 
 
 ```bash=
 kubeadm join 192.168.1.30:6443 --token 5yhjnt.g3j0fnacrh3wspov \
         --discovery-token-ca-cert-hash sha256:d3ebb4bdd99009977e7d35ea6ab98ef5b608bab522e8bb2736105849d7ae44b7
-```
-
-```bash
-  mkdir -p $HOME/.kube
-  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 ### Testando
@@ -158,7 +152,7 @@ kubectl get nodes -o wide
 
 ![image](https://user-images.githubusercontent.com/97816800/220674115-6db31aa8-e7b5-43fc-8c2c-69bcc0d0137e.png)
 
-### Agora vamos pra perfumaria, ajustar o Vim para 2 espaços ao apertar Tab (importante para criar .yaml), criar Alias para o Kubectl, e o autocomplete do Kubernetes. 
+### Agora vamos pra perfumaria, ajustar o Vim para 2 espaços ao apertar Tab (importante para criar .yaml), criar Alias para o Kubectl, e o Autocomplete do Kubernetes. 
 
 * Vim
 
