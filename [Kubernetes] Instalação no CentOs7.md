@@ -41,10 +41,15 @@ sudo firewall-cmd --permanent --add-port=10255/tcp
 sudo firewall-cmd --reload
 ```
 ```bash=
+sudo su -
+
 cat <<EOF > /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
+
+modprobe br_netfilter
+echo "1" > /proc/sys/net/ipv4/ip_forward
 
 sysctl --system
 ```
@@ -131,7 +136,7 @@ sudo systemctl start kubelet
 ### Por firm, vamos subir o cluster, primeiro o nó Master depois os nós workers.
 
 ```bash=
-sudo kubeadm init --control-plane-endpoint="192.168.1.30:6443" --pod-network-cidr="10.244.0.0/16"
+sudo kubeadm init --control-plane-endpoint="192.168.1.30:6443" --apiserver-advertise-address="192.168.1.30" --pod-network-cidr="10.244.0.0/16"
 ```
 
 * Tudo estando certo irá aparecer conforme abaixo e as partes grifadas serão utilizadas posteriormente. Então copie e guarde.
