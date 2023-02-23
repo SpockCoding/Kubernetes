@@ -73,6 +73,8 @@ sudo yum-config-manager \
     https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
+* Mude para root para executar o passo abaixo, é mais fácil
+
 ```bash=
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
@@ -83,6 +85,9 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 EOF
+
+
+yum update -y
 ```
 
 ### Agora vamos na vera, Docker, Containerd, Kubernetes
@@ -91,12 +96,22 @@ EOF
 sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 ```
 
-* Esta parte é essencial pq se não comentar esta linha irá dar um erro dizendo "container runtime is not working"
+* Esta parte é essencial pq se não comentar esta linha irá dar um erro dizendo "container runtime is not working". E ainda é importante que o Cgroup esteja o mesmo entre kubelet e containerd
 
 ```bash=
 vim /etc/containerd/config.toml
 
 #disabled_plugins = ["cri"]
+
+[plugins]
+  [plugins."io.containerd.grpc.v1.cri"]
+   [plugins."io.containerd.grpc.v1.cri".containerd]
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes]
+        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+          runtime_type = "io.containerd.runc.v2"
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+            SystemdCgroup = true
+
 ```
 ```bash=
 sudo systemctl enable containerd
