@@ -150,7 +150,7 @@ sudo kubeadm init --control-plane-endpoint="192.168.1.30:6443" --apiserver-adver
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-* Instalação do CNI Weave
+* Instalação do CNI Weave. Veja a versão antes de seguir este passo, talvez esteja numa versão mais nova.
 
 ```bash=
 kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
